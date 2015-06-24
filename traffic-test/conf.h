@@ -2,64 +2,64 @@
 #define _TRAFFIC_CHECK_CONF_H_
 
 
-#define CHK_CONF_MAX_THREAD		(8)
+#define CHK_CONF_MAX_THREAD        (8)
 
 #define CHK_CONF_MAX_ITEM_NUM   (8)
 #define CHK_CONF_STATISTIC_NUM  (20)
 
 
 typedef struct {
-	char					*name;
-	int						len;
-	char					*value[CHK_CONF_MAX_ITEM_NUM];
-	int						num;	
+    char                    *name;
+    int                        len;
+    char                    *value[CHK_CONF_MAX_ITEM_NUM];
+    int                        num;    
 }chk_conf_value_array;
 
 
 typedef struct {
-	char 					*name;
-	int  					len;
-	void 					*conf;
-	int  					offset;
-	int (*func)(chk_conf_value_array *map, char *conf, int offset);
+    char                     *name;
+    int                      len;
+    void                     *conf;
+    int                      offset;
+    int (*func)(chk_conf_value_array *map, char *conf, int offset);
 }chk_conf_name_func_t;
 
 typedef struct {
-	int		max;
-	int		cur;
-	chk_read_data_t	*array;
+    int        max;
+    int        cur;
+    chk_read_data_t    *array;
 }chk_result_t;
 
 
 typedef struct {
-	char					*name;
-	chk_conf_name_func_t	*conf;
-	int						(*check)();
-	int						(*handler)(chk_result_t *, int);
+    char                    *name;
+    chk_conf_name_func_t    *conf;
+    int                        (*check)();
+    int                        (*handler)(chk_result_t *, int);
 }chk_conf_hander_t;
 
 
 
 typedef struct {
-	int						daemon;
-	
-	int						rate;
+    int                        daemon;
+    
+    int                        rate;
 
-	int						min_pin;
-	int						pin_level;
-	int						list_num;
+    int                        min_pin;
+    int                        pin_level;
+    int                        list_num;
 
-	
-	double					min_ratio;
-	
-	chk_result_t			*list;
-	
-	chk_conf_hander_t		*select;
-	char					*error_log;
-	char					*read_path;
-	char					*cmd_string;
+    
+    double                    min_ratio;
+    
+    chk_result_t            *list;
+    
+    chk_conf_hander_t        *select;
+    char                    *error_log;
+    char                    *read_path;
+    char                    *cmd_string;
 
-	int 					interval[CHK_CONF_MAX_ITEM_NUM];
+    int                     interval[CHK_CONF_MAX_ITEM_NUM];
 }g_chk_conf_info_t;
 
 
